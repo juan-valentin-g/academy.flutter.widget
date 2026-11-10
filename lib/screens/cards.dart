@@ -37,51 +37,88 @@ class ProductCard2 extends StatelessWidget {
       margin: EdgeInsets.all(15),
       child: Column(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(15),
-              topRight: Radius.circular(15),
-            ),
-            child: Image.asset('assets/images/Naranja.png'),
+          Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
+                child: Image.asset('assets/images/sillon.png'),
+              ),
+              Positioned(
+                top: 12,
+                left: 12,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(0, 0, 0, 0),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Text(
+                    'New',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 238, 5, 5),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Row(
+          Align(
+            alignment: AlignmentGeometry.bottomLeft,
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Naranja',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  '\$5',
+                  'Title Lorem Ipsum',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
           ),
-          Row(
-            children: [
-              Align(
-                alignment: AlignmentGeometry.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: FilledButton(
-                    onPressed: () => {},
-                    child: Text('Comprar'),
-                  ),
+          Align(
+            alignment: AlignmentGeometry.bottomLeft,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [Text('Text Lorem', style: TextStyle(fontSize: 18))],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Text(
+                  '\$00.00',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-              ),
-              IconButton(
-                onPressed: () => {},
-                icon: Icon(Icons.remove, color: Colors.black),
-              ),
-              Text('5'),
-              IconButton(
-                onPressed: () => {},
-                icon: Icon(Icons.add, color: Colors.black),
-              ),
-            ],
+                const Spacer(),
+                IconButton(
+                  onPressed: () => {},
+                  style: IconButton.styleFrom(
+                    fixedSize: const Size(48, 48),
+                    shape: const RoundedRectangleBorder(),
+                  ),
+                  icon: const Icon(Icons.favorite, color: Colors.blue),
+                ),
+                const SizedBox(width: 8),
+                IconButton.filled(
+                  onPressed: () => {},
+                  style: IconButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                    fixedSize: const Size(48, 48),
+                    shape: const RoundedRectangleBorder(),
+                  ),
+                  icon: const Icon(Icons.add),
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -7,12 +7,12 @@ class Dialogs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void mostrarDialog(BuildContext context) {
-      showDialog(
+      showDialog<void>(
         context: context,
         builder: (context) {
           return Dialog(
             child: Padding(
-              padding: EdgeInsetsGeometry.all(12),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -21,13 +21,19 @@ class Dialogs extends StatelessWidget {
                   Text('Carrera: Tecnologias de la Informacion.'),
                   Text('Cuatrimestre: 10mo'),
                   SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 8,
                     children: [
                       Chip(label: Text('Angular')),
                       Chip(label: Text('Nest.js')),
                       Chip(label: Text('Flutter')),
                     ],
+                  ),
+                  const SizedBox(height: 10),
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Cerrar'),
                   ),
                 ],
               ),
@@ -37,18 +43,85 @@ class Dialogs extends StatelessWidget {
       );
     }
 
-    void mostrarAlerta(context) {
-      showDialog(
+    void mostrarAlerta(BuildContext context) {
+      showDialog<void>(
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Eliminar Alumno.'),
-            content: Text('Estas Seguro de Eliminar a Este Alumno?'),
+            title: const Text('Eliminar alumno'),
+            content: const Text('¿Estás seguro de eliminar a este alumno?'),
             actions: [
-              TextButton(onPressed: () => {}, child: Text('Cancelar')),
               TextButton(
-                onPressed: () => {Navigator.pop(context)},
-                child: Text('Eliminar'),
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Cancelar'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Eliminar'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
+    void mostrarMateria(BuildContext context) {
+      showDialog<void>(
+        context: context,
+        builder: (context) {
+          return Dialog(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.menu_book, size: 100),
+                  const Text(
+                    'Materia: Desarrollo Móvil Integral',
+                    textAlign: TextAlign.center,
+                  ),
+                  const Text('Cuatrimestre: 10mo'),
+                  const Text('Tema: Diálogos y alertas'),
+                  const SizedBox(height: 10),
+                  const Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 8,
+                    children: [
+                      Chip(label: Text('Flutter')),
+                      Chip(label: Text('Dart')),
+                      Chip(label: Text('Widgets')),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Cerrar'),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      );
+    }
+
+    void mostrarInscripcion(BuildContext context) {
+      showDialog<void>(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Inscribir alumno'),
+            content: const Text(
+              '¿Deseas inscribir a este alumno en Desarrollo Móvil Integral?',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Cancelar'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Inscribir'),
               ),
             ],
           );
@@ -57,21 +130,33 @@ class Dialogs extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: CustomAppBar(title: 'Dialogs'),
+      appBar: const CustomAppBar(title: 'Dialogs'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton.icon(
-              onPressed: () => {mostrarDialog(context)},
-              label: Text('Informacion Personalizada.'),
+              onPressed: () => mostrarDialog(context),
+              label: Text('Información personalizada'),
               icon: Icon(Icons.school),
             ),
             SizedBox(height: 15),
             ElevatedButton.icon(
-              onPressed: () => {mostrarAlerta(context)},
-              label: Text('Eliminar Alumno.'),
+              onPressed: () => mostrarAlerta(context),
+              label: Text('Eliminar alumno'),
               icon: Icon(Icons.delete),
+            ),
+            const SizedBox(height: 15),
+            ElevatedButton.icon(
+              onPressed: () => mostrarMateria(context),
+              label: const Text('Información de la materia'),
+              icon: const Icon(Icons.menu_book),
+            ),
+            const SizedBox(height: 15),
+            ElevatedButton.icon(
+              onPressed: () => mostrarInscripcion(context),
+              label: const Text('Inscribir alumno'),
+              icon: const Icon(Icons.person_add),
             ),
           ],
         ),
