@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_widgets/widgets/card-movie.dart';
 import 'package:flutter_app_widgets/widgets/custom_app_bar.dart';
 
 class Grids extends StatelessWidget {
@@ -6,11 +7,11 @@ class Grids extends StatelessWidget {
   final List<Map<String, String>> peliculas = [
     {
       "name": "It",
-      "image": "https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.filmaffinity.com%2Fes%2Ffilm312346.html&ved=0CBcQjRxqFwoTCKCXt4mP_pcDFQAAAAAdAAAAABA3&opi=89978449",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStzUlEhnikQk_zieuAn332dqfNaYHy1mUYHLyJOzQDkjRnRR-q9BOxFikP&s=10",
     },
     {
       "name": "Halo",
-      "image": "https://static.wikia.nocookie.net/halo/images/6/6f/Halo_4_Forward_Unto_Dawn.jpg/revision/latest/scale-to-width-down/1200?cb=20150727175751&path-prefix=es",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStzUlEhnikQk_zieuAn332dqfNaYHy1mUYHLyJOzQDkjRnRR-q9BOxFikP&s=10",
     },
     {
       "name": "Resident Evil",
@@ -18,7 +19,7 @@ class Grids extends StatelessWidget {
     },
     {
       "name": "Saw",
-      "image": "https://m.media-amazon.com/images/I/71ZmwhDbzUL._AC_UF894,1000_QL80_.jpg",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStzUlEhnikQk_zieuAn332dqfNaYHy1mUYHLyJOzQDkjRnRR-q9BOxFikP&s=10",
     },
   ];
 
@@ -33,28 +34,17 @@ class Grids extends StatelessWidget {
             crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 8,
-            childAspectRatio: .8,
+            childAspectRatio: .6,
           ),
           itemCount: peliculas.length,
           itemBuilder: (context, index) {
-            return CardMovie(
-              img: peliculas[index]["image"]!,
-              titulo: peliculas[index]["name"]!,
+            return CardVideogame(
+              title: peliculas[index]["name"]!,
+              image: peliculas[index]["image"]!,
             );
           },
         ),
       ),
     );
-  }
-}
-
-class CardMovie extends StatelessWidget {
-  String img;
-  String titulo;
-  CardMovie({super.key, required this.img, required this.titulo});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(child: Column(children: [Image.network(img), Text(titulo)]));
   }
 }
